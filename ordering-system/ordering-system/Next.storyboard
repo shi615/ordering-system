@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Next View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="nextPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="NextViewController" customModule="ordering_system" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZWi-xP-O4H">
+                                <rect key="frame" x="10" y="34" width="1160" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="ct4-dO-Jtc"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="おすすめ"/>
+                                    <segment title="ランチ"/>
+                                    <segment title="セット"/>
+                                    <segment title="単品"/>
+                                    <segment title="アルコール"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setupSegmentedControl:" destination="Y6W-OH-hqX" eventType="valueChanged" id="2WL-oG-tON"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8n-sx-1Mt">
+                                <rect key="frame" x="10" y="144" width="1160" height="646"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mry-nB-Slh" userLabel="RecommendedMenu">
+                                <rect key="frame" x="10" y="144" width="1160" height="646"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jV-b2-5ci">
+                                        <rect key="frame" x="10" y="10" width="1140" height="626"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tXR-uI-YbE">
+                                                <rect key="frame" x="10" y="20" width="1120" height="1001"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1001" id="Zj3-EQ-bkI"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="tXR-uI-YbE" firstAttribute="height" secondItem="Joj-qY-Dgl" secondAttribute="height" id="F8K-me-e4S"/>
+                                            <constraint firstItem="tXR-uI-YbE" firstAttribute="top" secondItem="5z8-nA-t6W" secondAttribute="top" constant="10" id="M0z-Sd-fWI"/>
+                                            <constraint firstItem="tXR-uI-YbE" firstAttribute="width" secondItem="5z8-nA-t6W" secondAttribute="width" multiplier="0.982456" id="ays-4p-1t5"/>
+                                            <constraint firstItem="tXR-uI-YbE" firstAttribute="width" secondItem="Joj-qY-Dgl" secondAttribute="width" id="hq9-A2-mbP"/>
+                                            <constraint firstItem="tXR-uI-YbE" firstAttribute="centerX" secondItem="8jV-b2-5ci" secondAttribute="centerX" id="jfq-Ku-p0d"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="Joj-qY-Dgl"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="5z8-nA-t6W"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="8jV-b2-5ci" secondAttribute="bottom" constant="10" id="J0n-Ep-dP8"/>
+                                    <constraint firstItem="8jV-b2-5ci" firstAttribute="top" secondItem="Mry-nB-Slh" secondAttribute="top" constant="10" id="aYh-2J-Kbx"/>
+                                    <constraint firstItem="8jV-b2-5ci" firstAttribute="leading" secondItem="Mry-nB-Slh" secondAttribute="leading" constant="10" id="oLw-jv-Tks"/>
+                                    <constraint firstAttribute="trailing" secondItem="8jV-b2-5ci" secondAttribute="trailing" constant="10" id="vOm-gy-iBu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N8n-sx-1Mt" firstAttribute="top" secondItem="ZWi-xP-O4H" secondAttribute="bottom" constant="10" id="9hU-B5-WOh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mry-nB-Slh" secondAttribute="trailing" constant="10" id="E8B-LL-H0V"/>
+                            <constraint firstItem="Mry-nB-Slh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="GOu-DO-idG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Mry-nB-Slh" secondAttribute="bottom" constant="10" id="SE7-NH-C3X"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ZWi-xP-O4H" secondAttribute="trailing" constant="10" id="SZm-hl-Rkd"/>
+                            <constraint firstItem="ZWi-xP-O4H" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="VRI-IG-P0E"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="N8n-sx-1Mt" secondAttribute="bottom" constant="10" id="VYb-B5-XFy"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="N8n-sx-1Mt" secondAttribute="trailing" constant="10" id="YZx-d2-qO0"/>
+                            <constraint firstItem="N8n-sx-1Mt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="eaU-an-vFv"/>
+                            <constraint firstItem="Mry-nB-Slh" firstAttribute="top" secondItem="ZWi-xP-O4H" secondAttribute="bottom" constant="10" id="iPp-V9-ycQ"/>
+                            <constraint firstItem="ZWi-xP-O4H" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="qEP-hc-1WI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lunchMenuView" destination="N8n-sx-1Mt" id="PQ7-VT-Q3q"/>
+                        <outlet property="menuImageView" destination="tXR-uI-YbE" id="OeT-t2-qyY"/>
+                        <outlet property="menuSegmentedControl" destination="ZWi-xP-O4H" id="83D-ID-yBY"/>
+                        <outlet property="recommendedMenuView" destination="Mry-nB-Slh" id="he2-aM-qCI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="21.864406779661017" y="-34.390243902439025"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
