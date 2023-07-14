@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="KGk-i7-Jjw" customClass="HistoryTableViewCell" customModule="ordering_system" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="193" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="193" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bm6-Bf-iA2">
+                        <rect key="frame" x="0.0" y="0.0" width="196" height="100"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FdP-Ow-HZT">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="100"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FdP-Ow-HZT" secondAttribute="trailing" id="8Xi-CZ-OYy"/>
+                            <constraint firstAttribute="width" constant="196" id="Afg-9E-xou"/>
+                            <constraint firstAttribute="height" constant="100" id="Ihd-o5-TFR"/>
+                            <constraint firstAttribute="bottom" secondItem="FdP-Ow-HZT" secondAttribute="bottom" id="PNk-Vb-A7I"/>
+                            <constraint firstItem="FdP-Ow-HZT" firstAttribute="top" secondItem="bm6-Bf-iA2" secondAttribute="top" id="h1M-WU-x86"/>
+                            <constraint firstItem="FdP-Ow-HZT" firstAttribute="leading" secondItem="bm6-Bf-iA2" secondAttribute="leading" id="sxg-qs-oZl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bm6-Bf-iA2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Tqa-Tl-gJx"/>
+                    <constraint firstItem="bm6-Bf-iA2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aUl-nM-Vz8"/>
+                    <constraint firstAttribute="bottom" secondItem="bm6-Bf-iA2" secondAttribute="bottom" id="wO3-yp-F2X"/>
+                    <constraint firstAttribute="trailing" secondItem="bm6-Bf-iA2" secondAttribute="trailing" id="x9N-y2-nLI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="historyMenuImageView" destination="FdP-Ow-HZT" id="Dr5-Y2-T6O"/>
+            </connections>
+            <point key="canvasLocation" x="91.097560975609753" y="19.576271186440678"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
