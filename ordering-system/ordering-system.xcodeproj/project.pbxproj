@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522C57E52A75360B00BFAF89 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C57E42A75360B00BFAF89 /* MenuCollectionViewCell.swift */; };
+		524A3E812A6AF37200C9BD22 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A3E802A6AF37200C9BD22 /* MenuView.swift */; };
+		524A3E832A6AF86900C9BD22 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A3E822A6AF86900C9BD22 /* ButtonsView.swift */; };
 		52769C0F2A6192A7008E8F0E /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52769C0D2A6192A7008E8F0E /* MenuTableViewCell.swift */; };
 		52769C102A6192A7008E8F0E /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52769C0E2A6192A7008E8F0E /* MenuTableViewCell.xib */; };
 		52769C132A61973D008E8F0E /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */; };
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		522C57E42A75360B00BFAF89 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		524A3E802A6AF37200C9BD22 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		524A3E822A6AF86900C9BD22 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		52769C0D2A6192A7008E8F0E /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		52769C0E2A6192A7008E8F0E /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -88,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522C57E32A7535E400BFAF89 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				522C57E42A75360B00BFAF89 /* MenuCollectionViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		52EBECE82A5273A1001691EE = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +125,7 @@
 		52EBECF32A5273A1001691EE /* ordering-system */ = {
 			isa = PBXGroup;
 			children = (
+				522C57E32A7535E400BFAF89 /* cell */,
 				52EBECF42A5273A1001691EE /* AppDelegate.swift */,
 				52EBECF62A5273A1001691EE /* SceneDelegate.swift */,
 				52EBECFA2A5273A1001691EE /* Main.storyboard */,
@@ -124,6 +139,8 @@
 				52769C0D2A6192A7008E8F0E /* MenuTableViewCell.swift */,
 				52769C122A61973D008E8F0E /* HistoryTableViewCell.xib */,
 				52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */,
+				524A3E802A6AF37200C9BD22 /* MenuView.swift */,
+				524A3E822A6AF86900C9BD22 /* ButtonsView.swift */,
 			);
 			path = "ordering-system";
 			sourceTree = "<group>";
@@ -279,11 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524A3E812A6AF37200C9BD22 /* MenuView.swift in Sources */,
 				52769C132A61973D008E8F0E /* HistoryTableViewCell.swift in Sources */,
+				522C57E52A75360B00BFAF89 /* MenuCollectionViewCell.swift in Sources */,
 				52EBECF92A5273A1001691EE /* ViewController.swift in Sources */,
 				52EBED272A5275D1001691EE /* NextViewController.swift in Sources */,
 				52EBECF52A5273A1001691EE /* AppDelegate.swift in Sources */,
 				52EBECF72A5273A1001691EE /* SceneDelegate.swift in Sources */,
+				524A3E832A6AF86900C9BD22 /* ButtonsView.swift in Sources */,
 				52769C0F2A6192A7008E8F0E /* MenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,7 +495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "hahaha.com.ordering-system";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hahaha.ordering-system2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -504,7 +524,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "hahaha.com.ordering-system";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hahaha.ordering-system2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
