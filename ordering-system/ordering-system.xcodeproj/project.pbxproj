@@ -14,6 +14,9 @@
 		52769C102A6192A7008E8F0E /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52769C0E2A6192A7008E8F0E /* MenuTableViewCell.xib */; };
 		52769C132A61973D008E8F0E /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */; };
 		52769C142A61973D008E8F0E /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52769C122A61973D008E8F0E /* HistoryTableViewCell.xib */; };
+		527F62482A76613D002F1215 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F62472A76613D002F1215 /* HistoryCollectionViewCell.swift */; };
+		527F624A2A766E3E002F1215 /* Pay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527F62492A766E3E002F1215 /* Pay.storyboard */; };
+		527F624C2A766F75002F1215 /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F624B2A766F75002F1215 /* PayViewController.swift */; };
 		52EBECF52A5273A1001691EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBECF42A5273A1001691EE /* AppDelegate.swift */; };
 		52EBECF72A5273A1001691EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBECF62A5273A1001691EE /* SceneDelegate.swift */; };
 		52EBECF92A5273A1001691EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EBECF82A5273A1001691EE /* ViewController.swift */; };
@@ -52,6 +55,9 @@
 		52769C0E2A6192A7008E8F0E /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		52769C122A61973D008E8F0E /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		527F62472A76613D002F1215 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		527F62492A766E3E002F1215 /* Pay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pay.storyboard; sourceTree = "<group>"; };
+		527F624B2A766F75002F1215 /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		52EBECF12A5273A1001691EE /* ordering-system.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ordering-system.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EBECF42A5273A1001691EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EBECF62A5273A1001691EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				522C57E42A75360B00BFAF89 /* MenuCollectionViewCell.swift */,
+				527F62472A76613D002F1215 /* HistoryCollectionViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -141,6 +148,8 @@
 				52769C112A61973C008E8F0E /* HistoryTableViewCell.swift */,
 				524A3E802A6AF37200C9BD22 /* MenuView.swift */,
 				524A3E822A6AF86900C9BD22 /* ButtonsView.swift */,
+				527F62492A766E3E002F1215 /* Pay.storyboard */,
+				527F624B2A766F75002F1215 /* PayViewController.swift */,
 			);
 			path = "ordering-system";
 			sourceTree = "<group>";
@@ -271,6 +280,7 @@
 				52EBECFE2A5273A3001691EE /* Assets.xcassets in Resources */,
 				52769C102A6192A7008E8F0E /* MenuTableViewCell.xib in Resources */,
 				52769C142A61973D008E8F0E /* HistoryTableViewCell.xib in Resources */,
+				527F624A2A766E3E002F1215 /* Pay.storyboard in Resources */,
 				52EBECFC2A5273A1001691EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,12 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				524A3E812A6AF37200C9BD22 /* MenuView.swift in Sources */,
+				527F62482A76613D002F1215 /* HistoryCollectionViewCell.swift in Sources */,
 				52769C132A61973D008E8F0E /* HistoryTableViewCell.swift in Sources */,
 				522C57E52A75360B00BFAF89 /* MenuCollectionViewCell.swift in Sources */,
 				52EBECF92A5273A1001691EE /* ViewController.swift in Sources */,
 				52EBED272A5275D1001691EE /* NextViewController.swift in Sources */,
 				52EBECF52A5273A1001691EE /* AppDelegate.swift in Sources */,
 				52EBECF72A5273A1001691EE /* SceneDelegate.swift in Sources */,
+				527F624C2A766F75002F1215 /* PayViewController.swift in Sources */,
 				524A3E832A6AF86900C9BD22 /* ButtonsView.swift in Sources */,
 				52769C0F2A6192A7008E8F0E /* MenuTableViewCell.swift in Sources */,
 			);

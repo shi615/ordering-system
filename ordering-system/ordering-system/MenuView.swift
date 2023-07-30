@@ -1,6 +1,6 @@
 import UIKit
 
-struct cellData {
+struct CellData {
     var image: UIImage
     var title: String
     var price: Int
@@ -16,13 +16,18 @@ struct cellData {
     }
 }
 
+protocol MenuViewCellDelegate: AnyObject {
+    func didPressCell(collectionViewIndex: Int, cellIndex: Int, cellData: CellData)
+}
+
 class MenuView: UIView {
     private var buttonsView = ButtonsView()
     private var stackView = UIStackView()
     private var scrollView = UIScrollView()
     private var collectionViews: [UICollectionView] = []
     private var buttons: [UIButton] = []
-    private var cellsData: [[cellData]] = [[]]
+    private var cellsData: [[CellData]] = [[]]
+    weak var cellDelegate: MenuViewCellDelegate?
     
     // コードでビューを初期化するためのイニシャライザ
     override init(frame: CGRect) {
@@ -66,7 +71,7 @@ class MenuView: UIView {
     }
     
     func setupCellData(collectionViewNumber: Int, imageName: String, title: String, price: Int) {
-        cellsData[collectionViewNumber].append(cellData(image: UIImage(named: imageName) ?? UIImage(), title: title, price: price))
+        cellsData[collectionViewNumber].append(CellData(image: UIImage(named: imageName) ?? UIImage(), title: title, price: price))
     }
     
     private func setupButtonsView() {
@@ -115,7 +120,7 @@ class MenuView: UIView {
         //        layout.itemSize = CGSize(width: (collectionView.frame.width - 40) / 3, height: (collectionView.frame.width - 40) / 3)
         //        layout.minimumLineSpacing = 0
         //        layout.minimumInteritemSpacing = 0
-        //        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         //        collectionView.setCollectionViewLayout(layout, animated: false)
         
         collectionView.register(
@@ -206,12 +211,14 @@ extension MenuView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
+        if collectionView.cellForItem(at: indexPath) is MenuCollectionViewCell {
             for index in 0..<collectionViews.count {
                 if collectionView == collectionViews[index] {
-                    // let cellData = cellsData[index][indexPath.row]
-                    // test用
-                    cell.changeBackground()
+                    cellDelegate?.didPressCell(
+                        collectionViewIndex: index,
+                        cellIndex: indexPath.row,
+                        cellData: cellsData[index][indexPath.row]
+                    )
                 }
             }
         }

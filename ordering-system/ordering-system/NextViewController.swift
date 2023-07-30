@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NextViewTotalPriceDelegate: AnyObject {
+    func didPressButton(orderedMenu: [CellData])
+}
+
 class NextViewController: UIViewController {
     // 上部
 //    @IBOutlet private weak var menuSegmentedControl: UISegmentedControl!
@@ -19,9 +23,11 @@ class NextViewController: UIViewController {
     @IBOutlet private weak var view5: MenuView!
     @IBOutlet private weak var view6: MenuView!
     @IBOutlet private weak var historyView: UIView!
-    @IBOutlet private weak var historyButtonView: UIView!
+//    @IBOutlet private weak var historyButtonView: UIView!
+    @IBOutlet private weak var totalPriceLabel: UILabel!
     @IBOutlet private weak var payButtonView: UIView!
-
+    @IBOutlet private weak var payButton: UIButton!
+    
     private let menuTitles = ["飲み物・デザート", "麺・飯", "一品料理", "食べ放題・飲み放題", "定食・ランチ", "酒セット"]
     private let view1Buttons = ["ノンアルコール", "アルコール", "デザート"]
     private let view2Buttons = ["麺類", "飯類"]
@@ -38,6 +44,9 @@ class NextViewController: UIViewController {
         [],
         []
     ]
+    private var orderedMenu: [CellData] = []
+    private var historyCollectionView: UICollectionView!
+    weak var nextViewTotalPriceDelegate: NextViewTotalPriceDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +76,7 @@ class NextViewController: UIViewController {
                 views[i].isHidden = true
             }
             insertButtons(views[i], allViewButtons[i])
+            views[i].cellDelegate = self
         }
         // テスト用
         view1.backgroundColor = .systemBlue
@@ -77,6 +87,77 @@ class NextViewController: UIViewController {
         view6.backgroundColor = .systemGray
 
         setupViewsTitle(menuTitles)
+
+        setupHistoryCollectionView()
+
+        setupPayButtonAction()
+
+        setupTotalPriceView()
+    }
+
+    private func setupTotalPriceView() {
+        totalPriceLabel.textAlignment = .center
+        totalPriceLabel.numberOfLines = 0
+        totalPriceLabel.text = "総金額"
+    }
+
+    private func setupPayButtonAction() {
+        payButton.addAction(
+            .init { _ in
+//                let storyboard = UIStoryboard(name: "Pay", bundle: nil)
+//                if let vc = storyboard.instantiateInitialViewController() {
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                }
+//                self.nextViewTotalPriceDelegate?.didPressButton(orderedMenu: self.orderedMenu)
+                let storyboard = UIStoryboard(name: "Pay", bundle: nil)
+                if let payViewController = storyboard.instantiateViewController(withIdentifier: "PayViewController") as? PayViewController {
+                    payViewController.orderedMenu = self.orderedMenu
+                    self.navigationController?.pushViewController(payViewController, animated: true)
+                }
+                self.nextViewTotalPriceDelegate?.didPressButton(orderedMenu: self.orderedMenu)
+            },
+            for: .touchUpInside
+        )
+    }
+
+    private func setupHistoryCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        historyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        // layout.itemSize = CGSize(width: collectionView.frame.width - 20, height: collectionView.frame.width - 20)
+        // layout.minimumLineSpacing = 0
+        // layout.minimumInteritemSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        historyCollectionView.setCollectionViewLayout(layout, animated: true)
+        
+        historyCollectionView.register(
+            MenuCollectionViewCell.self,
+            forCellWithReuseIdentifier: MenuCollectionViewCell.identifier
+        )
+        historyCollectionView.dataSource = self
+        historyCollectionView.delegate = self
+        
+        historyCollectionView.layer.cornerRadius = 20.0
+        historyCollectionView.layer.masksToBounds = true
+        historyCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        historyView.addSubview(historyCollectionView)
+        
+        NSLayoutConstraint.activate([
+            historyCollectionView.topAnchor.constraint(equalTo: historyView.topAnchor, constant: 10),
+            historyCollectionView.bottomAnchor.constraint(equalTo: historyView.bottomAnchor, constant: -10),
+            historyCollectionView.leadingAnchor.constraint(equalTo: historyView.leadingAnchor, constant: 10),
+            historyCollectionView.trailingAnchor.constraint(equalTo: historyView.trailingAnchor, constant: -120)
+        ])
+
+        //        let label = UILabel()
+        //        label.text = String(collectionViews.count)
+        //        label.translatesAutoresizingMaskIntoConstraints = false
+        //        collectionView.addSubview(label)
+        //        label.backgroundColor = .systemCyan
+        //        NSLayoutConstraint.activate([
+        //            label.widthAnchor.constraint(equalTo: widthAnchor, constant: 10),
+        //            label.heightAnchor.constraint(equalToConstant: 100)
+        //        ])
     }
 
     private func insertMenuData() {
@@ -134,9 +215,48 @@ class NextViewController: UIViewController {
     private func setupRoundCorner(_ cornerRadius: CGFloat) {
         historyView.layer.cornerRadius = cornerRadius
         historyView.layer.masksToBounds = true
-        historyButtonView.layer.cornerRadius = cornerRadius
-        historyButtonView.layer.masksToBounds = true
+//        historyButtonView.layer.cornerRadius = cornerRadius
+//        historyButtonView.layer.masksToBounds = true
         payButtonView.layer.cornerRadius = cornerRadius
         payButtonView.layer.masksToBounds = true
+    }
+
+    private func showTotalPrice() {
+        var totalPrice = 0
+        for i in orderedMenu {
+            totalPrice += i.price
+        }
+        totalPriceLabel.text = "総金額" + "\n\(totalPrice)"
+    }
+}
+
+extension NextViewController: MenuViewCellDelegate {
+    func didPressCell(collectionViewIndex: Int, cellIndex: Int, cellData: CellData) {
+        orderedMenu.append(cellData)
+        historyCollectionView.reloadData()
+        showTotalPrice()
+    }
+}
+
+extension NextViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // return orderedMenu.count
+        return orderedMenu.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else {
+            fatalError("Failed to dequeue MenuCollectionViewCell.")
+        }
+        let cellData = orderedMenu[indexPath.row]
+        cell.configure(with: cellData.image, title: "", number: cellData.price)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(
+            width: collectionView.frame.height - 20,
+            height: collectionView.frame.height - 20
+        )
     }
 }
