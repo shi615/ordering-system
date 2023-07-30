@@ -58,4 +58,8 @@ class MenuCollectionViewCell: UICollectionViewCell {
         priceLabel.text = "\(number)"
         self.backgroundColor = .systemRed
     }
+
+    func changeBackground() {
+        self.backgroundColor = .systemOrange
+    }
 }

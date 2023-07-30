@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     private func setupButton() {
         startButton.addAction(
             .init { _ in
-                print("click")
                 let storyboard = UIStoryboard(name: "Next", bundle: nil)
                 if let vc = storyboard.instantiateInitialViewController() {
                     self.navigationController?.pushViewController(vc, animated: true)
