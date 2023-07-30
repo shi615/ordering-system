@@ -9,6 +9,7 @@ import UIKit
 
 class PayViewController: UIViewController {
     var orderedMenu: [CellData]?
+    @IBOutlet private weak var restartButton: UIButton!
     @IBOutlet private weak var totalPriceLabel: UILabel!
     static var idendifier = "PayViewController"
 
@@ -16,6 +17,7 @@ class PayViewController: UIViewController {
         super.viewDidLoad()
 
         showTotalPrice()
+        setupRestartButton()
     }
 
     private func showTotalPrice() {
@@ -28,5 +30,14 @@ class PayViewController: UIViewController {
             }
             totalPriceLabel.text = "会計\n" + "￥\(totalPrice)"
         }
+    }
+
+    private func setupRestartButton() {
+        restartButton.setTitle("新規注文", for: .normal)
+        restartButton.addAction(
+            .init{ _ in
+                self.navigationController?.popToRootViewController(animated: true)
+            },
+            for: .touchUpInside)
     }
 }

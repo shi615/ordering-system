@@ -24,12 +24,14 @@ class ViewController: UIViewController {
     }
 
     private func setupButton() {
+        // startButton.setTitle("新規注文", for: .normal)
         startButton.addAction(
             .init { _ in
                 let storyboard = UIStoryboard(name: "Next", bundle: nil)
                 if let vc = storyboard.instantiateInitialViewController() {
                     self.navigationController?.pushViewController(vc, animated: true)
-                }            },
+                }
+            },
             for: .touchUpInside
         )
     }

@@ -21,7 +21,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="iRI-g8-hGa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -30,10 +30,19 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Wzu-m7-DU1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQV-IS-Nwf">
+                                <rect key="frame" x="515" y="544" width="150" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="GLZ-eY-Wmy"/>
+                                    <constraint firstAttribute="height" constant="75" id="vpR-4p-hsi"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -41,12 +50,15 @@
                             <constraint firstItem="f0L-Ai-eu4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="1w2-xZ-Pds"/>
                             <constraint firstItem="Gtv-06-5L1" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="5m9-LO-3zN"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Gtv-06-5L1" secondAttribute="trailing" constant="10" id="Iwu-Vc-K8j"/>
+                            <constraint firstItem="pQV-IS-Nwf" firstAttribute="top" secondItem="f0L-Ai-eu4" secondAttribute="bottom" constant="300" id="Qb3-3M-Ue0"/>
                             <constraint firstItem="Gtv-06-5L1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="W3g-pg-OVn"/>
                             <constraint firstItem="f0L-Ai-eu4" firstAttribute="top" secondItem="Gtv-06-5L1" secondAttribute="bottom" constant="10" id="fP3-3R-U8n"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="f0L-Ai-eu4" secondAttribute="trailing" constant="10" id="jBj-5M-By5"/>
+                            <constraint firstItem="pQV-IS-Nwf" firstAttribute="centerX" secondItem="f0L-Ai-eu4" secondAttribute="centerX" id="zH0-ci-leW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="restartButton" destination="pQV-IS-Nwf" id="bIb-zh-0Kv"/>
                         <outlet property="totalPriceLabel" destination="f0L-Ai-eu4" id="v8c-OK-X6x"/>
                     </connections>
                 </viewController>
