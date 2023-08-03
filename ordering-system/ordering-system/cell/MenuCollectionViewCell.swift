@@ -56,7 +56,11 @@ class MenuCollectionViewCell: UICollectionViewCell {
         imageView.image = image
         titleLabel.text = title
         priceLabel.text = "\(number)"
-        self.backgroundColor = .systemRed
+        titleLabel.font = UIFont.systemFont(ofSize: 30)
+        priceLabel.font = UIFont.systemFont(ofSize: 30)
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 20.0
+        self.layer.masksToBounds = true
     }
 
     func changeBackground() {

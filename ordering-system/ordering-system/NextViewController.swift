@@ -13,7 +13,6 @@ protocol NextViewTotalPriceDelegate: AnyObject {
 
 class NextViewController: UIViewController {
     // 上部
-//    @IBOutlet private weak var menuSegmentedControl: UISegmentedControl!
     @IBOutlet weak var menuSegmentedControl: UISegmentedControl!
     private var views: [MenuView] = []
     @IBOutlet private weak var view1: MenuView!
@@ -23,23 +22,29 @@ class NextViewController: UIViewController {
     @IBOutlet private weak var view5: MenuView!
     @IBOutlet private weak var view6: MenuView!
     @IBOutlet private weak var historyView: UIView!
-//    @IBOutlet private weak var historyButtonView: UIView!
     @IBOutlet private weak var totalPriceLabel: UILabel!
     @IBOutlet private weak var payButtonView: UIView!
     @IBOutlet private weak var payButton: UIButton!
-    
-    private let menuTitles = ["飲み物・デザート", "麺・飯", "一品料理", "食べ放題・飲み放題", "定食・ランチ", "酒セット"]
-    private let view1Buttons = ["ノンアルコール", "アルコール", "デザート"]
+
+    private let menuTitles = ["一品料理", "麺・飯", "飲み物・デザート", "食べ放題・飲み放題", "定食・ランチ", "酒セット"]
+    private let view3Buttons = ["ノンアルコール", "アルコール", "デザート"]
     private let view2Buttons = ["麺類", "飯類"]
-    private let view3Buttons = ["前菜", "揚げ物", "肉料理", "野菜料理", "海鮮料理", "鍋鉄板", "点心", "お粥・スープ"]
+    private let view1Buttons = ["前菜", "揚げ物", "肉料理", "野菜料理", "海鮮料理", "鍋鉄板", "点心", "お粥・スープ"]
     private let view4Buttons = ["食べ放題", "飲み放題"]
     private let view5Buttons = ["定食", "ランチ"]
     private let view6Buttons = ["料理", "プラス"]
+//    private let menuTitles = ["メニュー1", "メニュー2", "メニュー3", "メニュー4", "メニュー5", "メニュー6"]
+//    private let view1Buttons = ["サブメニュー1", "サブメニュー2", "サブメニュー3"]
+//    private let view2Buttons = ["サブメニュー1", "サブメニュー2"]
+//    private let view3Buttons = ["サブメニュー1", "サブメニュー2", "サブメニュー3", "サブメニュー4", "サブメニュー5", "サブメニュー6", "サブメニュー7", "サブメニュー8"]
+//    private let view4Buttons = ["サブメニュー1", "サブメニュー2"]
+//    private let view5Buttons = ["サブメニュー1", "サブメニュー2"]
+//    private let view6Buttons = ["サブメニュー1", "サブメニュー2"]
     private var allViewButtons: [[String]] = []
     private var imageNames: [[[String]]] = [
-        [],
-        [],
         [["枝豆_300", "棒棒鳥_580", "春巻き_700", "キャベツ_500", "野菜サラダ_580", "もやしサラダ_600"]],
+        [],
+        [],
         [],
         [],
         []
@@ -57,6 +62,19 @@ class NextViewController: UIViewController {
     }
 
     private func initSetup() {
+        
+        let font = UIFont.systemFont(ofSize: 20) // Set the desired font size
+        let textColor = UIColor.black // Set the desired text color
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: textColor
+        ]
+
+        menuSegmentedControl.setTitleTextAttributes(attributes, for: .normal)
+        menuSegmentedControl.backgroundColor = .systemOrange
+
+
         allViewButtons.append(view1Buttons)
         allViewButtons.append(view2Buttons)
         allViewButtons.append(view3Buttons)
@@ -77,14 +95,8 @@ class NextViewController: UIViewController {
             }
             insertButtons(views[i], allViewButtons[i])
             views[i].cellDelegate = self
+            views[i].backgroundColor = .systemOrange
         }
-        // テスト用
-        view1.backgroundColor = .systemBlue
-        view2.backgroundColor = .systemRed
-        view3.backgroundColor = .systemOrange
-        view4.backgroundColor = .systemCyan
-        view5.backgroundColor = .systemMint
-        view6.backgroundColor = .systemGray
 
         setupViewsTitle(menuTitles)
 
@@ -99,16 +111,12 @@ class NextViewController: UIViewController {
         totalPriceLabel.textAlignment = .center
         totalPriceLabel.numberOfLines = 0
         totalPriceLabel.text = "総金額"
+        totalPriceLabel.font = UIFont.systemFont(ofSize: 25)
     }
 
     private func setupPayButtonAction() {
         payButton.addAction(
             .init { _ in
-//                let storyboard = UIStoryboard(name: "Pay", bundle: nil)
-//                if let vc = storyboard.instantiateInitialViewController() {
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                }
-//                self.nextViewTotalPriceDelegate?.didPressButton(orderedMenu: self.orderedMenu)
                 let storyboard = UIStoryboard(name: "Pay", bundle: nil)
                 if let payViewController = storyboard.instantiateViewController(withIdentifier: "PayViewController") as? PayViewController {
                     payViewController.orderedMenu = self.orderedMenu
@@ -124,15 +132,12 @@ class NextViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         historyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        // layout.itemSize = CGSize(width: collectionView.frame.width - 20, height: collectionView.frame.width - 20)
-        // layout.minimumLineSpacing = 0
-        // layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         historyCollectionView.setCollectionViewLayout(layout, animated: true)
         
         historyCollectionView.register(
-            MenuCollectionViewCell.self,
-            forCellWithReuseIdentifier: MenuCollectionViewCell.identifier
+            HistoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier
         )
         historyCollectionView.dataSource = self
         historyCollectionView.delegate = self
@@ -148,22 +153,10 @@ class NextViewController: UIViewController {
             historyCollectionView.leadingAnchor.constraint(equalTo: historyView.leadingAnchor, constant: 10),
             historyCollectionView.trailingAnchor.constraint(equalTo: historyView.trailingAnchor, constant: -120)
         ])
-
-        //        let label = UILabel()
-        //        label.text = String(collectionViews.count)
-        //        label.translatesAutoresizingMaskIntoConstraints = false
-        //        collectionView.addSubview(label)
-        //        label.backgroundColor = .systemCyan
-        //        NSLayoutConstraint.activate([
-        //            label.widthAnchor.constraint(equalTo: widthAnchor, constant: 10),
-        //            label.heightAnchor.constraint(equalToConstant: 100)
-        //        ])
     }
 
     private func insertMenuData() {
         // Asset名：メニュー番号_サブメニュー番号_商品名_値段.png、０から始めないといけない！！
-//        let title = "キャベツ"
-//        let price = 800
         if imageNames.count == 0 {
             return
         }
@@ -189,7 +182,6 @@ class NextViewController: UIViewController {
                 }
             }
         }
-        // view1.setupCellData(collectionViewNumber: 2, imageName: "キャベツ_800", title: "キャベツ", price: 800) // いけるぞ！これ
     }
 
     private func setupViewsTitle( _ titles: [String]) {
@@ -215,8 +207,6 @@ class NextViewController: UIViewController {
     private func setupRoundCorner(_ cornerRadius: CGFloat) {
         historyView.layer.cornerRadius = cornerRadius
         historyView.layer.masksToBounds = true
-//        historyButtonView.layer.cornerRadius = cornerRadius
-//        historyButtonView.layer.masksToBounds = true
         payButtonView.layer.cornerRadius = cornerRadius
         payButtonView.layer.masksToBounds = true
     }
@@ -226,6 +216,7 @@ class NextViewController: UIViewController {
         for i in orderedMenu {
             totalPrice += i.price
         }
+        totalPriceLabel.font = UIFont.systemFont(ofSize: 25)
         totalPriceLabel.text = "総金額" + "\n\(totalPrice)"
     }
 }
@@ -240,12 +231,11 @@ extension NextViewController: MenuViewCellDelegate {
 
 extension NextViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // return orderedMenu.count
         return orderedMenu.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HistoryCollectionViewCell.identifier, for: indexPath) as? HistoryCollectionViewCell else {
             fatalError("Failed to dequeue MenuCollectionViewCell.")
         }
         let cellData = orderedMenu[indexPath.row]

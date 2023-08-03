@@ -46,10 +46,9 @@ class MenuView: UIView {
         let cornerRadius: CGFloat = 20.0
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
-        self.backgroundColor = .systemOrange
+        self.backgroundColor = .systemCyan
         
         // ButtonsViewを追加する
-        buttonsView.backgroundColor = .systemBlue
         buttonsView.layer.cornerRadius = 20.0
         buttonsView.layer.masksToBounds = true
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,11 +62,6 @@ class MenuView: UIView {
         ])
         
         setupButtonsView()
-        // test
-//                cellsData[0].append(cellData(image: UIImage(named: "Dango") ?? UIImage(), title: "団子ちゃん", price: 1))
-//                for index in 0..<6 {
-//                    cellsData[0].append(cellData(image: UIImage(named: String(index+1)) ?? UIImage(), title: String(index+1), price: 3))
-//                }
     }
     
     func setupCellData(collectionViewNumber: Int, imageName: String, title: String, price: Int) {
@@ -117,11 +111,7 @@ class MenuView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        //        layout.itemSize = CGSize(width: (collectionView.frame.width - 40) / 3, height: (collectionView.frame.width - 40) / 3)
-        //        layout.minimumLineSpacing = 0
-        //        layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        //        collectionView.setCollectionViewLayout(layout, animated: false)
         
         collectionView.register(
             MenuCollectionViewCell.self,
@@ -133,6 +123,7 @@ class MenuView: UIView {
         collectionView.layer.cornerRadius = 20.0
         collectionView.layer.masksToBounds = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemOrange
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
@@ -147,19 +138,12 @@ class MenuView: UIView {
             collectionView.isHidden = true
         }
         cellsData.append([])
-        //        let label = UILabel()
-        //        label.text = String(collectionViews.count)
-        //        label.translatesAutoresizingMaskIntoConstraints = false
-        //        collectionView.addSubview(label)
-        //        label.backgroundColor = .systemCyan
-        //        NSLayoutConstraint.activate([
-        //            label.widthAnchor.constraint(equalTo: widthAnchor, constant: 10),
-        //            label.heightAnchor.constraint(equalToConstant: 100)
-        //        ])
     }
     
     func insertButton(buttonTitle: String) {
         let button = createButton(title: buttonTitle)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25) // Set the desired font size
         stackView.addArrangedSubview(button)
         setupCollectionView()
     }

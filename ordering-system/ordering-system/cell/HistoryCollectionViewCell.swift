@@ -63,7 +63,7 @@ class HistoryCollectionViewCell: UICollectionViewCell {
         imageView.image = image
         titleLabel.text = title
         priceLabel.text = "\(number)"
-        self.backgroundColor = .systemRed
+        self.backgroundColor = .white
     }
 
     func changeBackground() {

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     private func setupTitleLabel() {
-        titleLabel.text = "中華美食　味縁"
+        // titleLabel.text = "中華美食　味縁"
     }
 
     private func setupButton() {
